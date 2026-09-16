@@ -1,9 +1,11 @@
 name: Mobile Check
+
 on:
   push:
     branches: [main, feature/idea-to-ipo-mvp]
   pull_request:
     branches: [main]
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -12,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
       - run: npm install
       - run: npx tsc --noEmit
       - run: npx expo export --platform web
+      - run: node --check server/index.mjs
