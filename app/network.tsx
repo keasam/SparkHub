@@ -1,2 +1,31 @@
-import { useState } from 'react'; import { router } from 'expo-router'; import { Shell,Field,Choice } from '../src/ui';
-export default function Network(){const [access,setAccess]=useState('');const [partners,setPartners]=useState('');const [geography,setGeography]=useState('');const [support,setSupport]=useState('');return <Shell step="STEP 07 · NETWORK" title="What ecosystem surrounds the idea?" subtitle="Capture relationships, access, geography, partnerships, and support that may affect execution." next={()=>router.push('/assessment')} nextLabel="Start 9-question assessment"><Field label="Customer / community access" value={access} onChangeText={setAccess} placeholder="Existing audience, community, distribution access..." multiline/><Field label="Partners / institutions" value={partners} onChangeText={setPartners} placeholder="Potential or confirmed partners" multiline/><Field label="Primary market / geography" value={geography} onChangeText={setGeography} placeholder="India, city, region, global..."/><Text style={{fontSize:13,fontWeight:'800',marginBottom:8,color:'#26251F'}}>Support available</Text>{['Mentors / advisors','Incubator / accelerator','Investors / funding access','Industry partnerships','None yet'].map(x=><Choice key={x} label={x} selected={support===x} onPress={()=>setSupport(x)}/>) }<Field label="Anything else we should know?" value={support==='None yet'?'': ''} onChangeText={()=>{}} placeholder="Optional context" multiline/></Shell>}
+import { useState } from 'react';
+import { router } from 'expo-router';
+import { Text } from 'react-native';
+import { Shell, Field, Choice } from '../src/ui';
+
+export default function Network() {
+  const [access, setAccess] = useState('');
+  const [partners, setPartners] = useState('');
+  const [geography, setGeography] = useState('');
+  const [support, setSupport] = useState('');
+  const [extra, setExtra] = useState('');
+
+  return (
+    <Shell
+      step="STEP 07 · NETWORK"
+      title="What ecosystem surrounds the idea?"
+      subtitle="Capture relationships, access, geography, partnerships, and support that may affect execution."
+      next={() => router.push('/assessment')}
+      nextLabel="Start 9-question assessment"
+    >
+      <Field label="Customer / community access" value={access} onChangeText={setAccess} placeholder="Existing audience, community, distribution access..." multiline />
+      <Field label="Partners / institutions" value={partners} onChangeText={setPartners} placeholder="Potential or confirmed partners" multiline />
+      <Field label="Primary market / geography" value={geography} onChangeText={setGeography} placeholder="India, city, region, global..." />
+      <Text style={{ fontSize: 13, fontWeight: '800', marginBottom: 8, color: '#26251F' }}>Support available</Text>
+      {['Mentors / advisors', 'Incubator / accelerator', 'Investors / funding access', 'Industry partnerships', 'None yet'].map((x) => (
+        <Choice key={x} label={x} selected={support === x} onPress={() => setSupport(x)} />
+      ))}
+      <Field label="Anything else we should know?" value={extra} onChangeText={setExtra} placeholder="Optional context" multiline />
+    </Shell>
+  );
+}
