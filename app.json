@@ -1,0 +1,1 @@
+{"expo":{"name":"SparkHub","slug":"sparkhub","version":"0.1.0","scheme":"sparkhub","orientation":"portrait","plugins":["expo-router","expo-document-picker"],"experiments":{"typedRoutes":true}}}
